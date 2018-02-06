@@ -1,0 +1,7 @@
+services:
+    kolyya_photo.twig.extension:
+        class: Kolyya\PhotoBundle\Twig\Extension\PhotoExtension
+        public: false
+        arguments: [ '@kolyya_photo.templating.helper' ]
+        tags:
+            - { name: twig.extension }

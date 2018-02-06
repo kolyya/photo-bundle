@@ -1,0 +1,80 @@
+{% trans_default_domain 'KolyyaPhotoBundle' %}
+<h2>{{ 'layout.list'|trans }}</h2>
+{% if not photos|length %}<h3 class="text-center text-warning kolyya-photo-empty">{{ 'layout.no_photo'|trans }}</h3>{% endif %}
+<div class="clearfix" id="kolyyaPhotoSortable">
+    {% include '@KolyyaPhoto/Photo/partials/photos_list.html.twig' with {photos: photos} %}
+</div>
+
+<h2>{{ 'layout.new'|trans }}</h2>
+<form action="{{ path('kolyya_photo_upload', { id: id, name: name }) }}"
+      class="dropzone"
+      id="my-awesome-dropzone"
+      enctype="multipart/form-data"
+></form>
+
+    <script>
+        Dropzone.options.myAwesomeDropzone = {
+            init: function() {
+                this.on("success", function(file,status,progressEvent) {
+                    changePhotoList(status);
+                });
+            }
+        };
+
+        function setSortable() {
+            $( "#kolyyaPhotoSortable" ).sortable({
+                axis: 'x',
+                update: function (event, ui) {
+                    var _this = $(this);
+                    var sort = _this.sortable( "toArray", {attribute: 'data-id'});
+                    _this.sortable( "disable" ) ;
+                    console.log(sort);
+                    $.ajax({
+                        url: '{{ path('kolyya_photo_sort') }}',
+                        data: {id:{{ id }}, name: '{{ name }}', sort:sort },
+                        success: function(data){
+                            console.log(data);
+                            $('#kolyyaPhotoSortable').find('.ui-state-default').each(function (i) {
+                                $(this).attr('data-id',sort.sort()[i]);
+                            });
+                        },
+                        error: function(error){
+                            console.log(error);
+                        },
+                        complete: function () {
+                            _this.sortable( "enable" ) ;
+                        }
+                    });
+                }
+            }).disableSelection();
+        }
+        setSortable();
+
+        function changePhotoList(data){
+            if(data.count) {
+                $('.kolyya-photo-empty').show();
+            } else {
+                $('.kolyya-photo-empty').hide();
+            }
+
+            $('#kolyyaPhotoSortable').html(data.template);
+            setSortable();
+        }
+
+        $(document).on('click','.kolyya-photo-delete-link',function (e) {
+            e.preventDefault();
+            var url = $(this).attr('href').replace('#','');
+           $.ajax({
+               url: url,
+               data: {},
+               success: function(data){
+                   changePhotoList(data);
+               },
+               error: function(error){
+                   console.log(error);
+               }
+           });
+           return false;
+        });
+
+    </script>

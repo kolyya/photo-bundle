@@ -1,0 +1,25 @@
+{
+    "name" : "kolyya/photo-bundle",
+    "description" : "Allows you to upload an unlimited number of photos for the object, delete them and sort them. Also allows you to specify several formats for storing photos.",
+    "version" : "0.1.0",
+    "type" : "symfony-bundle",
+    "homepage" : "https://github.com/kolyya/photo-bundle",
+    "license" : "MIT",
+    "keywords" : ["photo","photo bundle","sort photo","resize photo"],
+    "authors" : [{
+        "name" : "Nikolai Gurin",
+        "email" : "0kolyya@gmail.com"
+    }],
+    "require" : {
+        "php": ">=5.3.2",
+        "symfony/symfony": ">=3.*"
+    },
+    "autoload" : {
+        "psr-4" : { "Kolyya\\PhotoBundle\\" : "" }
+    },
+    "extra" : {
+        "branch-alias" : {
+          "dev-master" : "0.1.x-dev"
+        }
+    }
+}

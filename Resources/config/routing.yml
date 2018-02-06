@@ -1,0 +1,11 @@
+kolyya_photo_upload:
+    path:     /kolyya_photo/upload
+    defaults: { _controller: KolyyaPhotoBundle:Manager:upload }
+
+kolyya_photo_delete:
+    path:     /kolyya_photo/delete
+    defaults: { _controller: KolyyaPhotoBundle:Manager:delete }
+
+kolyya_photo_sort:
+    path:     /kolyya_photo/sort
+    defaults: { _controller: KolyyaPhotoBundle:Manager:sort }

@@ -1,0 +1,7 @@
+{% trans_default_domain 'KolyyaPhotoBundle' %}
+{% for photo in photos %}
+    <div data-id="{{ photo.id }}" class="pull-left ui-state-default" style="padding-right: 10px;">
+        <a href="{{ path }}/{{ photo.img }}" rel="lightbox[roadtrip]"><img src="{{ path }}/{{ photo.img }}" width="150" height="150" alt="" /></a>
+        <br/><a href="#{{ path('kolyya_photo_delete', {photoId: photo.id, name: name}) }}" class="kolyya-photo-delete-link">{{ 'layout.delete'|trans }}</a>
+    </div>
+{% endfor %}

@@ -1,0 +1,7 @@
+services:
+    kolyya_photo.templating.helper:
+        class: Kolyya\PhotoBundle\Templating\Helper\PhotoHelper
+        public: false
+        arguments: ['@doctrine.orm.default_entity_manager','@service_container','@templating','%kolyya_photo.objects%']
+        tags:
+            - { name: templating.helper, alias: photo }

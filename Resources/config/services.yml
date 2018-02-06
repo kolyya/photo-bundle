@@ -1,0 +1,8 @@
+services:
+    kolyya_photo.check_permissions:
+        class: Kolyya\PhotoBundle\Service\CheckPermissions
+        arguments: []
+
+    kolyya_photo.photo_manager:
+        class: Kolyya\PhotoBundle\Service\PhotoManager
+        arguments: ['@doctrine.orm.default_entity_manager']
