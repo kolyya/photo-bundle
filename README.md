@@ -38,13 +38,13 @@ delete them and sort them. Also allows you to specify several formats for storin
         resource: "@KolyyaPhotoBundle/Resources/config/routing.yml"
     ``` 
 
-2. 
-    2.1 Create an entity(ies) for photos, 
+4. 
+    4.1 Create an entity(ies) for photos, 
     inheriting from `Kolyya\PhotoBundle\Entity\Photo`.
     
-    2.2 Set methods `getObject()` and `setObject()`
+    4.2 Set methods `getObject()` and `setObject()`
 
-3. Add [object(s)](#object) in [Config](#Config) `config.yml`
+5. Add [object(s)](#object) in [Config](#Config) `config.yml`
 
     ```yaml
     kolyya_photo:
